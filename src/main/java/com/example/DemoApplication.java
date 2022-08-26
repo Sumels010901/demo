@@ -24,7 +24,7 @@ public class DemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		User user = new User();
 		user.setUsername("account");
-		user.setPassword("0109");
+		user.setPassword(passwordEncoder.encode("0109"));
 		userRepository.save(user);
 		System.out.println(user);
 	}

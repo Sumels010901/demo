@@ -1,5 +1,6 @@
 package com.example.jwt;
 
+import org.springframework.util.AntPathMatcher;
 import org.springframework.util.StringUtils;
 import com.example.service.UserService;
 import lombok.extern.slf4j.Slf4j;
@@ -48,6 +49,11 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             return bearerToken.substring(7);
         }
         return null;
+    }
+
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        return new AntPathMatcher().match("/login", request.getServletPath());
     }
 }
 
